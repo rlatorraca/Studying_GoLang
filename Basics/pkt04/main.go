@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-type inteiro int
+type inteiro uint
 
 var (
 	var11 inteiro = 100
