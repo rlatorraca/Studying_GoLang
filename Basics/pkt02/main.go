@@ -32,8 +32,8 @@ func main() {
 	println(var08)
 	println(var09)
 
-	new_var_por_inferencia := "Sem tipo" // usando := na primeira vez
-	println(new_var_por_inferencia)
-	new_var_por_inferencia = "Sem tipo, modificado" // nao usa : da segunda vez em diante
-	println(new_var_por_inferencia)
+	newVarPorInferencia := "Sem tipo" // usando := na primeira vez
+	println(newVarPorInferencia)
+	newVarPorInferencia = "Sem tipo, modificado" // nao usa : da segunda vez em diante
+	println(newVarPorInferencia)
 }
