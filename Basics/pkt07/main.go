@@ -40,16 +40,16 @@ func main() {
 	fmt.Println("=======================================")
 	delete(salaries, "Jean")
 
-	for i, v := range salaries {
-		fmt.Printf("Name: %s | Salary: %d\n", i, v)
+	for name, salary := range salaries {
+		fmt.Printf("Name: %s | Salary: %d\n", name, salary)
 	}
 
 	total := 0.0
 	count := 0
 	size := len(salaries)
 	fmt.Printf("Size: %d\n", size)
-	for _, v := range salaries {
-		total = total + float64(v)
+	for _, salary := range salaries {
+		total = total + float64(salary)
 		count++
 		if count == size {
 			fmt.Println("=======================================")
