@@ -5,6 +5,13 @@ import "fmt"
 // GoLang NAO eh OO
 // GoLang se assemela as OO languages ao usar Structs
 
+// INTERFACES
+// Apenas possivel passar METDOOS e NAO pode ter atributtos
+
+type Person interface {
+	Desactive()
+}
+
 // STRUCTS
 // NAO é possivel HERANCA
 // É possivel COMPOSICAO de Structs
@@ -19,7 +26,7 @@ type Address struct {
 
 type SIN struct {
 	number int8
-	year   uint16
+	year   int16
 }
 
 type Client struct {
@@ -32,12 +39,20 @@ type Client struct {
 
 type Company struct {
 	Name   string
-	number uint16
+	number int32
 }
 
-func (client Client) inactiveClient() {
+func (client Client) Desactive() {
 	client.active = false
 	fmt.Printf("Client inactive | value: %t", client.active)
+}
+
+func (company Company) Desactive() {
+
+}
+
+func Inactive(person Person) {
+	person.Desactive()
 }
 
 func main() {
@@ -54,8 +69,15 @@ func main() {
 
 	fmt.Printf("Name: %s | Age: %d | Active: %t\n", client01.name, client01.age, client01.active)
 
-	client01.inactiveClient()
+	Inactive(client01) // client01m is a PERSON too
 
 	fmt.Printf("Name: %s | Age: %d | Active: %t", client01.name, client01.age, client01.active)
+
+	myCompany := Company{
+		Name:   "MyCompanny",
+		number: 678342376,
+	}
+
+	Inactive(myCompany) // myCompanny is a PERSON too [implementa Desactive]
 
 }
