@@ -6,6 +6,8 @@ import (
 
 /* Type Assertion */
 
+// Melhor usar generics dpo que interface vazia (empty interface)
+
 func main() {
 
 	var name interface{} = "John Marshall"
