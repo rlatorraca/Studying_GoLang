@@ -15,7 +15,7 @@ func main() {
 	defer func(Body io.ReadCloser) {
 		err := Body.Close()
 		if err != nil {
-
+			log.Fatal(fmt.Printf("[ERROR] Closing body... : %v\n", err))
 		}
 	}(request.Body)
 
