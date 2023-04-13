@@ -53,7 +53,7 @@ func HomeHandler(response http.ResponseWriter, request *http.Request) {
 
 /* Conecta a blog struct */
 func (b Blog) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
-	_, err := writer.Write([]byte(b.title + " " + b.language + " " + b.date))
+	_, err := writer.Write([]byte(b.title + "|" + b.language + "|" + b.date))
 	if err != nil {
 		writer.WriteHeader(http.StatusInternalServerError) /* 500 */
 		return
