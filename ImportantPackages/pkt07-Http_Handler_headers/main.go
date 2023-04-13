@@ -24,8 +24,8 @@ type ViaCep struct {
 /* Manipulando Arquivos em GoLang*/
 func main() {
 
-	http.HandleFunc("/", getCEPHandler) //
-	err := http.ListenAndServe(":8900", nil)
+	http.HandleFunc("/", getCEPHandler)      //
+	err := http.ListenAndServe(":8900", nil) // Multiplexer com o padrao do GoLang = nil (nao temos controler)
 	if err != nil {
 		log.Fatal(fmt.Printf("[ERROR] Listing HTTP server:8900 ... : %v\n", err))
 	} // Cria um servidor HTTP na porta :8900
@@ -34,22 +34,49 @@ func main() {
 func getCEPHandler(response http.ResponseWriter, request *http.Request) {
 
 	if request.URL.Path != "/" {
-		response.WriteHeader(http.StatusNotFound)
+		response.WriteHeader(http.StatusNotFound) /* 404 */
 		return
 	}
 
 	cepParameter := request.URL.Query().Get("cep")
 	if cepParameter == "" {
-		response.WriteHeader(http.StatusBadRequest)
+		response.WriteHeader(http.StatusBadRequest) /* 400 */
+		return
+	}
+
+	returnedCEP, err := getCEP(cepParameter)
+	if err != nil {
+		response.WriteHeader(http.StatusInternalServerError) /* 500 */
 		return
 	}
 
 	response.Header().Set("Content-Type", "application/json")
 	response.WriteHeader(http.StatusOK)
+
+	/* USING Marshal ~ NewEnconder
+	jsonCEP, err := json.Marshal(returnedCEP)
+	if err != nil {
+		response.WriteHeader(http.StatusInternalServerError) / 500 /
+		return
+	}
+	finalResponse, err := response.Write(jsonCEP)
+	if err != nil {
+		return
+	}
+	*/
+
+	err = json.NewEncoder(response).Encode(returnedCEP)
+	if err != nil {
+		response.WriteHeader(http.StatusInternalServerError) /* 500 */
+		return
+	}
+
+	/* PRINT on screen a text
 	_, err := response.Write([]byte("Hello World: getCEPHandler()"))
 	if err != nil {
 		log.Fatal(fmt.Printf("[ERROR] getCEPHandler function ... : %v\n", err))
 	}
+	*/
 }
 
 func getCEP(cep string) (*ViaCep, error) {
