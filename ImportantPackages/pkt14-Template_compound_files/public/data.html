@@ -1,0 +1,31 @@
+{{ template "header.html" }}
+<body>
+<main>
+    <h1>Welcome to My Website - RLSP</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>Hours</th>
+            </tr>
+        </thead>
+        <tbody >
+            {{ range . }}
+            {{ if eq .Hours 20 }}
+            <tr style="text-align: center">
+                <td style="color:red; font-size: 20px">{{.Name}}</td>
+                <td style="color:blue; font-size: 20px">{{.Hours}}</td>
+            </tr>
+            {{ else }}
+            <tr style="text-align: center">
+                <td style="color:black; font-size: 18px">{{.Name}}</td>
+                <td style="color:olivedrab; font-size: 18px">{{.Hours}}</td>
+            </tr>
+            {{ end }}
+            {{ end }}
+        </tbody>
+    </table>
+</main>
+</body>
+{{ template "footer.html" }}

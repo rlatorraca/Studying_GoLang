@@ -26,9 +26,9 @@ func main() {
 	/* Define a slice of template file paths */
 
 	templateFilePaths := []string{
-		"./ImportantPackages/pkt12-Template_extern_file/public/index.html",
+		"./ImportantPackages/pkt12-Template_extern_file/public/data.html",
 	}
-	tmpl := template.Must(template.New("index.html").ParseFiles(templateFilePaths...))
+	tmpl := template.Must(template.New("data.html").ParseFiles(templateFilePaths...))
 
 	err := tmpl.Execute(os.Stdout, myCourses)
 	if err != nil {

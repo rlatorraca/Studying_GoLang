@@ -26,9 +26,12 @@ func main() {
 	/* Define a slice of template file paths */
 
 	templateFilePaths := []string{
-		"./ImportantPackages/pkt13-Template_with_webserver/public/data.html",
+		"./ImportantPackages/pkt14-Template_compound_files/public/header.html",
+		"./ImportantPackages/pkt14-Template_compound_files/public/data.html",
+		"./ImportantPackages/pkt14-Template_compound_files/public/footer.html",
 	}
 
+	/* Sera chamado data.html, que tem a composicao do arquivo html com header + footer */
 	tmpl := template.Must(template.New("data.html").ParseFiles(templateFilePaths...))
 
 	mux := http.NewServeMux()
